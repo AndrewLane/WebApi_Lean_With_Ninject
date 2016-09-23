@@ -1,3 +1,5 @@
+using Ninject.Web.WebApi;
+
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(WebApi_Lean_With_Ninject.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(WebApi_Lean_With_Ninject.App_Start.NinjectWebCommon), "Stop")]
 
@@ -12,7 +14,6 @@ namespace WebApi_Lean_With_Ninject.App_Start
     using Ninject.Web.Common;
     using NinjectModules;
     using System.Web.Http;
-    using Infrastructure;
 
     public static class NinjectWebCommon 
     {
