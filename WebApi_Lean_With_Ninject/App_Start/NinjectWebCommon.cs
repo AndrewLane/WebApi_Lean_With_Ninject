@@ -1,23 +1,21 @@
+using System;
+using System.Web;
+using System.Web.Http;
+using Microsoft.Web.Infrastructure.DynamicModuleHelper;
+using Ninject;
+using Ninject.Web.Common;
 using Ninject.Web.WebApi;
+using WebApi_Lean_With_Ninject;
+using WebApi_Lean_With_Ninject.NinjectModules;
 
-[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(WebApi_Lean_With_Ninject.App_Start.NinjectWebCommon), "Start")]
-[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(WebApi_Lean_With_Ninject.App_Start.NinjectWebCommon), "Stop")]
+[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(NinjectWebCommon), "Start")]
+[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(NinjectWebCommon), "Stop")]
 
-namespace WebApi_Lean_With_Ninject.App_Start
+namespace WebApi_Lean_With_Ninject
 {
-    using System;
-    using System.Web;
-
-    using Microsoft.Web.Infrastructure.DynamicModuleHelper;
-
-    using Ninject;
-    using Ninject.Web.Common;
-    using NinjectModules;
-    using System.Web.Http;
-
     public static class NinjectWebCommon 
     {
-        private static readonly Bootstrapper bootstrapper = new Bootstrapper();
+        private static readonly Bootstrapper Bootstrapper = new Bootstrapper();
 
         /// <summary>
         /// Starts the application
@@ -27,7 +25,7 @@ namespace WebApi_Lean_With_Ninject.App_Start
             DynamicModuleUtility.RegisterModule(typeof(OnePerRequestHttpModule));
             DynamicModuleUtility.RegisterModule(typeof(NinjectHttpModule));
             IKernel container = null;
-            bootstrapper.Initialize(() =>
+            Bootstrapper.Initialize(() =>
             {
                 container = CreateKernel();
                 return container;
@@ -40,7 +38,7 @@ namespace WebApi_Lean_With_Ninject.App_Start
         /// </summary>
         public static void Stop()
         {
-            bootstrapper.ShutDown();
+            Bootstrapper.ShutDown();
         }
         
         /// <summary>

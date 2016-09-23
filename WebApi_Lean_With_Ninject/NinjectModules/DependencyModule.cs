@@ -1,8 +1,4 @@
 ﻿using Ninject.Modules;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using WebApi_Lean_With_Ninject.Services;
 
 namespace WebApi_Lean_With_Ninject.NinjectModules

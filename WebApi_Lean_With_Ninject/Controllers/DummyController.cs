@@ -6,7 +6,7 @@ namespace WebApi_Lean_With_Ninject.Controllers
 {
     public class DummyController : ApiController
     {
-        IProvideSomeDependency _dependency;
+        readonly IProvideSomeDependency _dependency;
 
         public DummyController(IProvideSomeDependency dependency)
         {
